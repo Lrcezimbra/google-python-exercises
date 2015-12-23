@@ -50,9 +50,12 @@ def not_bad(s):
 # e.g. 'abcde', the front half is 'abc', the back half 'de'.
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
+import math
 def front_back(a, b):
-    # +++your code here+++
-    return
+    lenA = math.ceil(len(a)/2)
+    lenB = math.ceil(len(b)/2)
+
+    return a[:lenA] + b[:lenB] + a[lenA:] + b[lenB:]
 
 
 # Simple provided test() function used in main() to print
