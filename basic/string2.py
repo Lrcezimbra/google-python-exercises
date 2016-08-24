@@ -49,8 +49,11 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-    # +++your code here+++
-    return
+    import math
+    a_half_len = math.ceil(len(a)/2)
+    b_half_len = math.ceil(len(b)/2)
+
+    return a[:a_half_len] + b[:b_half_len] + a[a_half_len:] + b[b_half_len:]
 
 
 # Simple provided test() function used in main() to print
