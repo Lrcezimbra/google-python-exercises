@@ -39,9 +39,7 @@ def match_ends(words):
 def front_x(words):
     wordsx = [word for word in words if word[0]=='x']
     wordss = [word for word in words if word[0]!='x']
-    wordsx.sort()
-    wordss.sort()
-    return wordsx + wordss
+    return sorted(wordsx) + sorted(wordss)
 
 
 # C. sort_last
