@@ -47,7 +47,7 @@ import sys
 
 def mimic_dict(filename):
   """Returns mimic dict mapping each word to list of words which follow it."""
-  with open('alice.txt') as file:
+  with open(filename) as file:
     stringfile = file.read()
 
   words = stringfile.split(' ')
