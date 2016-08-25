@@ -54,13 +54,12 @@ def mimic_dict(filename):
   unique_words = set(words)
   mimic_dict = dict()
   for unique_word in unique_words:
+    next_unique_word = list()
     for word_index,word in enumerate(words):
-      if unique_word == word and word_index < len(words)-1:
-        print(word_index)
-        print(len(words))
-        print(unique_word)
-        print(words[word_index+1])
-        mimic_dict[unique_word] = words[word_index+1]
+      if unique_word == word and word_index+1 < len(words):
+        next_unique_word.append(words[word_index+1])
+    mimic_dict[unique_word] = next_unique_word
+
   return
 
 
