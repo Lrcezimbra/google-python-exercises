@@ -40,7 +40,18 @@ print_words() and print_top().
 import sys
 
 
-# +++your code here+++
+def print_words(filename):
+    with open(filename) as file:
+        text = file.read()
+    words = text.lower().split()
+
+    count=list()
+    unique_words = set(words)
+    for word in unique_words:
+        count.append((word, words.count(word)))
+
+    for c in sorted(count):
+        print(c[0] + ' ' + str(c[1]))
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.
