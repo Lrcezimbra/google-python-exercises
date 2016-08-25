@@ -49,16 +49,14 @@ def count_words(filename):
     count = list()
     for word in set(words):
         count.append((word, words.count(word)))
-
     return count
 
-def print_words(filename):
-    count = count_words(filename)
-    for c in sorted(count):
+def print_count(filename):
+    for c in sorted(count_words(filename)):
         print(c[0] + ' ' + str(c[1]))
 
-def print_top(filename):
-    count_words(filename)
+def print_words(filename):
+    print_count(filename)
 
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
