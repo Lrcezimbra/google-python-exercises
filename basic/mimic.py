@@ -51,16 +51,13 @@ def mimic_dict(filename):
     stringfile = file.read()
 
   words = stringfile.split(' ')
-  unique_words = set(words)
   mimic_dict = dict()
-  for unique_word in unique_words:
-    next_unique_word = list()
-    for word_index,word in enumerate(words):
-      if unique_word == word and word_index+1 < len(words):
-        next_unique_word.append(words[word_index+1])
-    mimic_dict[unique_word] = next_unique_word
-
-  return
+  for word_index,word in enumerate(words):
+    if word not in mimic_dict:
+      mimic_dict[word] = list()
+    if word_index+1 < len(words):
+      mimic_dict[word].append(words[word_index+1])
+  return mimic_dict
 
 
 def print_mimic(mimic_dict, word):
