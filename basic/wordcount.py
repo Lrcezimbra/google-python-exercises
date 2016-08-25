@@ -51,12 +51,21 @@ def count_words(filename):
         count.append((word, words.count(word)))
     return count
 
-def print_count(filename):
-    for c in sorted(count_words(filename)):
+def print_count(filename, max=None, key=None, reverse=False):
+    sorted_list = sorted(count_words(filename), key=key, reverse=reverse)
+    count = 0
+    for c in sorted_list:
+        count += 1
         print(c[0] + ' ' + str(c[1]))
+        if count == max:
+            return
+
 
 def print_words(filename):
     print_count(filename)
+
+def print_top(filename):
+    print_count(filename, max=20, key=lambda k: k[1], reverse=True)
 
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
