@@ -44,14 +44,14 @@ def extract_names(filename):
     with open(filename) as file:
         text = file.read()
 
-    l = list()
+    names = list()
     year = re.search('<h3 align="center">Popularity in (.*)</h3>', text).group(1)
-    l.append(year)
+    names.append(year)
     table = re.findall('<tr align="right"><td>(.*)</td><td>(.*)</td><td>(.*)</td>', text)
     for row in table:
-        l.append(row[1] + ' ' + row[0])
-        l.append(row[2] + ' ' + row[0])
-    return
+        names.append(row[1] + ' ' + row[0])
+        names.append(row[2] + ' ' + row[0])
+    return sorted(names)
 
 
 def main():
@@ -66,11 +66,25 @@ def main():
 
     # Notice the summary flag and remove it from args if it is present.
     summary = False
+
     if args[0] == '--summaryfile':
         summary = True
         del args[0]
+        outputfile = args[-1]
+        del args[-1]
 
-        # +++your code here+++
+    names = list()
+    for file in args:
+        names.append(extract_names(file))
+
+    if summary:
+        with open(outputfile, mode='w') as file:
+            for name in names:
+                file.write('\n')
+                file.write('\n'.join(name))
+                file.write('\n')
+    else:
+        print(names)
         # For each filename, get the names, then either print the text output
         # or write it to a summary file
 
