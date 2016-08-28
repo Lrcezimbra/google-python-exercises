@@ -25,11 +25,14 @@ def read_urls(filename):
     Screens out duplicate urls and returns the urls sorted into
     increasing order."""
 
+    hostname = filename
+
     with open(filename) as file:
         log = file.read()
 
-    images = re.findall('\S*/images/puzzle\S*', log)
-    return set(sorted(images_list))
+    images_list = re.findall('\S*/images/puzzle\S*', log)
+    images = set(sorted(images_list))
+    return [hostname + image for image in images]
 
 
 def download_images(img_urls, dest_dir):
@@ -40,6 +43,7 @@ def download_images(img_urls, dest_dir):
     with an img tag to show each local image file.
     Creates the directory if necessary.
     """
+
 
 def main():
     args = sys.argv[1:]
