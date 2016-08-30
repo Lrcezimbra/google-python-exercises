@@ -32,7 +32,7 @@ def read_urls(filename):
         log = file.read()
 
     images_list = re.findall('\S*/images/puzzle\S*', log)
-    images = set(sorted(images_list))
+    images = sorted(set(images_list))
     return [hostname + image for image in images]
 
 
@@ -49,7 +49,10 @@ def download_images(img_urls, dest_dir):
         path.mkdir()
 
     for i, img_url in enumerate(img_urls):
-        urlretrieve(img_url, '%s/img%03d.jpg' % (dest_dir, i))
+        img_filename = 'img%03d.jpg' % i
+        urlretrieve(img_url, '%s/%s' % (dest_dir, img_filename))
+        with open('%s/index.html' % dest_dir, 'a') as file:
+            file.write('<img src="%s" />\n' % img_filename)
 
 
 def main():
